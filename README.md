@@ -1,4 +1,4 @@
-- 👋 Hey guys, aqui vos fala o Ericky
+- 👋 Hey guys, aqui quem vos fala é o Ericky
 - 👀 Um cara muito interessado em games e tecnologia
 - 🌱 Agora estou competindo comigo mesmo para ver quem aprende mais sobre algumas tecnologias Front-End enquanto faço um curso no NetAcad da Cisco em Redes.
 - 💞️ Estou casado com os estudos então se quiser participar do nosso relacionamento aberto, chega junto.
