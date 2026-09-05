@@ -1,0 +1,37 @@
+name: Atualizar cartões de estatísticas
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # todo dia às 06:00 UTC (03:00 no horário de Brasília)
+  workflow_dispatch:        # permite rodar manualmente pelo botão "Run workflow"
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gerar SVGs
+        env:
+          GH_USERNAME: erickystn
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/generate_stats.py assets
+
+      - name: Commitar mudanças
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/stats-card.svg assets/langs-card.svg
+          git diff --staged --quiet || git commit -m "chore: atualiza cartões de estatísticas [skip ci]"
+          git push
